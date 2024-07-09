@@ -1,26 +1,22 @@
 # Before Getting Started
 
-This project is quite a bit smaller and less complicated than the final projects from the Beginner course, but that is because the main goal of this project is to learn how to work with Portals. This project also introduces working with APIs that weren't designed with React in mind. This is a common scenario that you will encounter in the real world, so it is important to learn how to work with libraries/APIs that weren't designed with React in mind.
+This project will not actually use Portals. You could create this Date Picker with Portals, but it requires a lot of custom JavaScript and algebra to figure out how to position the calendar correctly, instead we will be using CSS to position the calendar which is much easier (even if it isn't quite as flexible).
 
-As for the starting code, all the styles you need are in the `styles.css` file. This includes styles for the custom modal. In this `index.html` I have included all the HTML you need for the two different types of modals implemented in this project. I also included JS code at the bottom of the file that allows the modals to be interacted with. This code will not translate one-to-one to React, but it should give you an idea of how to work with the `dialog` element since that is an HTML element that is somewhat new.
+Speaking of CSS, all the HTML/CSS you need for the project is included. Make sure you pay attention to all the classes in the HTML to make sure you include them all in your final project.
+
+The only other thing to note about this project is that it is built using `date-fns`. You can use any date library you want (even the built in JS Date API), but I will be using `date-fns` in my walkthrough video as I find it to be one of the best date libraries available.
 
 # Instructions
 
-1. Create a `CustomModal` component that renders a custom modal over the top of the application when opened.
-   - This modal should be opened by clicking the open button and closed by clicking the close button.
-   - This modal should also close when the `Escape` key is pressed.
-
-## Bonus:
-
-1. Create a `DialogModal` component that renders a `dialog` element over the top of the application when opened.
-   - This modal should have the exact same props/behavior as the `CustomModal` component.
-   - `dialog` elements automatically close when clicking the `Escape` key, but you will need to be careful about how you implement this since you need to make sure this automatic behavior links up with your React state/logic.
+1. Create a `DatePicker` component that renders a button to open/close a calendar.
+   - This component should be a controlled component which means that it should accept an `onChange` and `value` prop (similar to an `input` element).
+   - This component should default to the current date when the page loads.
+   - When the calendar is opened it should open to the month of the selected date.
 
 ===============
 
 # Advanced React Concepts
-- 04 - Modal Introduction
+- 09 - Date Picker Introduction
 
 # Solution OUTPUT
-![custom modal project output](image.png)
-![dialog modal project output](image2.png)
+![date picker project output](image.png)
