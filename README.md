@@ -1,37 +1,46 @@
 # Before Getting Started
 
-This project is fairly open ended in that there is no specific way that you need to implement the infinite scrolling behavior. You can create a custom hook, custom component, or just do it all in the `App.jsx` file.
+This is a quite complex project and is rather large so do not be surprised if this takes you a few days/weeks to complete. Some of the more complex parts of this project took me many hours to build and I spent nearly a full week on this project so don't worry if it takes you awhile.
 
-The starting code for this project contains both a `client` and an `api` folder. The `api` folder contains the code for the fake API we will be using, while the `client` folder contains the static HTML/CSS files. In order to start the API you need to run `npm run dev` inside the `api` folder (make sure you run `npm i` first to install the dependencies). This should start up an API on `http://localhost:3000`. This API is built on the [json-server](https://www.npmjs.com/package/json-server) package, which is a great tool for quickly building fake APIs. Essentially, whenever you make a request to the API it will read/write to the `db.json` file to get your data. I also included a `db.example.json` file which is the same as the `db.json` file, but it will never be modified so if you want to reset the API data to its original state you can copy the JSON from the `db.example.json` file into the `db.json` file.
+Just like all the other projects in this course I have all the starting code you need for this project. The `styles.css` file contains all the styles you need for the project. The `index.html` file has an example calendar with all different types of events included. Make sure you look through each of the CSS classes being applied so you full understand what classes need to be applied in each situation. _Also, you can ignore the `#root` div element that wraps the entire calendar. This is just there so I can emulate how React will render the content inside its own `#root` div and make sure all styles are properly applied._ Lastly, to render the modals you can just uncomment them in the `index.html` to see what they look like.
 
-The goal of this project is to create an infinitely scrolling grid of photos. Most likely you will need to use the `useCallback` hook as a ref combined with `IntersectionObserver`. _If you are unfamiliar with `IntersectionObserver` I recommend reading my [IntersectionObserver blog article](https://blog.webdevsimplified.com/2022-01/intersection-observer)._
-
-# API Information
-
-The API has the following endpoints:
-
-- `GET /photos?_page=<page>&_limit=<limit>` - Returns up to `<limit>` photos starting at `<page>` page.
-- `GET /photos-short-list?_page=<page>&_limit=<limit>` - This is identical to the above endpoint but this endpoint only has 100 photos total so you can more easily test what happens when you reach the end of the list.
-
-This API also uses the `Link` HTTP header to give you back the urls to the `next`, `previous`, `first`, and `last` pages. In our case we really only need the `next` page url. In order to parse this header you can use the `parseLinkHeader` function in the `client` folder. For more details on how the function works check out the comments above the function definition.
+The main goal of this project is to create a simple calendar application similar to Google Calendar. While this is a vastly simplified version of Google Calendar it is still quite complicated and will require lots of unique and interesting code. This project should also be written entirely in TypeScript if you are familiar with TypeScript as it is really good practice for most of the React specific TypeScript concepts.
 
 # Instructions
 
-1. Create an infinitely scrolling grid of photos using the API.
-   - The list should not break if there are no more photos to load.
-   - The list should not break if the user scrolls up and down quickly.
-   - The list should only load new photos when the user reaches (or gets close to) the bottom of the page.
+1. Create a `Calendar` component that renders the current month by default.
+   - This calendar should have buttons for going back/forward a month as well as for jumping to the current month.
+2. Add a `+` button that allows you to create a new event for the specific day.
+   - This should open a modal form for adding a new event.
+   - The form should include a `name`, `allDay`, `startTime`, `endTime`, and `color` field.
+   - The `name` field is required.
+   - The `allDay` field should be a checkbox that when checked will disable the `startTime` and `endTime` fields.
+   - The `startTime` must be before the `endTime` and are required if `allDay` is not checked.
+   - The `color` field should have the options `red`, `blue`, and `green`.
+3. Render events in the calendar view.
+   - Events should be sorted with all day events first and then by start date.
+4. Clicking on an event should open an edit modal.
+   - This modal should have the same fields as the add event modal but should be pre-populated with the event data.
+   - This modal should also have a delete button for removing an event.
 
 ## Bonus:
 
-1. Add a simple skeleton loading animation for when the photos are loading.
-   - The `index.html` file has a demo of what the skeleton loading animation should look like.
+1. Store events in LocalStorage so they persist on page refresh.
+2. If the number of events overflows the calendar day then render a `+X More` button at the bottom of the day that shows the number of events that overflow.
+   - These overflow events should be rendered in a modal when the `+X More` button is clicked.
+   - Clicking on one of the events in this modal should open the edit modal.
+   - The overflow events should be hidden and not rendered at all in the DOM (except in the modal).
+   - When the calendar day is resized the overflow events should be recalculated and rendered again.
+   - When the number of events changes the overflow events should be recalculated and rendered again.
+   - This is by far the hardest part of this project and will require a lot of thought and planning to get right so don't feel bad if you struggle here. This took me a full day to get done properly on my own.
+3. Add a closing animation to the modals.
+   - A `closing` class can be added to the modal to trigger the closing animation.
+   - The modal should only be removed from the DOM after the animation finishes to ensure if has a nice smooth transition out.
 
 ===============
 
 # Advanced React Concepts
-- 16 - Infinite Scroll Project
+- 32 - Google Calendar Clone Project
 
 # Solution OUTPUT
-![infinite scroll project output 1](image.png)
-![infinite scroll project output 2](image2.png)
+![google calendar clone project output](image.png)
